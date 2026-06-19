@@ -46,28 +46,6 @@
             margin-top: 10px;
             font-style: italic;
         }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
-            background: #211a15;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #4a3b2c;
-        }
-        nav a {
-            text-decoration: none;
-            color: #bfa17a;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            padding: 5px 15px;
-        }
-        nav a:hover {
-            color: #ffb84d;
-            background: #36291f;
-            border-radius: 3px;
-        }
         section {
             margin-bottom: 40px;
         }
@@ -82,28 +60,64 @@
             text-align: justify;
             color: #d5c8af;
         }
-        .grid-container {
+        
+        /* 全新：核心分類大方框 */
+        .category-box {
+            background-color: #211a15;
+            border: 2px solid #6e5334;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+            margin-top: 25px;
+        }
+        
+        /* 網格佈局：讓六個按鈕排成漂亮的兩列或三列 */
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
-        .card {
-            background-color: #211a15;
-            border: 1px solid #5c4731;
-            padding: 20px;
+        
+        /* 互動菜單選項按鈕 */
+        .category-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background-color: #2c241e;
+            border: 1px solid #4a3b2c;
+            padding: 15px 20px;
             border-radius: 4px;
-            transition: transform 0.2s;
+            color: #bfa17a;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
-        .card:hover {
+        
+        /* 滑鼠懸停互動特效（發光、浮起、字變金） */
+        .category-item:hover {
             transform: translateY(-3px);
+            color: #ffb84d;
+            background-color: #36291f;
             border-color: #d9a752;
+            box-shadow: 0 6px 15px rgba(217, 167, 82, 0.2);
         }
-        .card h3 {
-            margin-top: 0;
-            color: #ff9900;
-            font-size: 1.2em;
+        
+        /* 骰子小圖標樣式 */
+        .menu-dice {
+            background: #8c1a1a;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 0.75em;
+            border-radius: 3px;
+            margin-right: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            flex-shrink: 0;
         }
+        
+        /* 頂部大 D20 標籤 */
         .dice-icon {
             display: inline-block;
             background: #8c1a1a;
@@ -133,15 +147,6 @@
             <div class="subtitle">「骰面已定，命運的齒輪開始轉動。」—— 歡迎來到我們的 TRPG 跑團空間</div>
         </header>
 
-        <nav>
-            <a href="#">所有名詞</a>
-            <a href="#">基礎介紹</a>
-            <a href="#">遊戲類型</a>
-            <a href="#">遊玩介紹</a>
-            <a href="#">數值</a>
-            <a href="#">關於</a>
-        </nav>
-
         <main>
             <section>
                 <h2>關於本站</h2>
@@ -149,6 +154,21 @@
                     這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。
                     本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分，包括本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
                 </p>
+            </section>
+
+            <section class="category-box">
+                <h2>📚 辭典核心分類</h2>
+                <p style="font-size: 0.9em; color: #bfa17a; font-style: italic; margin-bottom: 15px;">
+                    選擇一個知識領域切入，開啟你的遭遇戰：
+                </p>
+                <div class="category-grid">
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 所有名詞</a>
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 基礎介紹</a>
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 遊戲類型</a>
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 遊玩介紹</a>
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 數值</a>
+                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 關於本站</a>
+                </div>
             </section>
         </main>
 

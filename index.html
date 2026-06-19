@@ -61,7 +61,7 @@
             color: #d5c8af;
         }
         
-        /* 全新：核心分類大方框 */
+        /* 核心分類大方框 */
         .category-box {
             background-color: #211a15;
             border: 2px solid #6e5334;
@@ -71,7 +71,7 @@
             margin-top: 25px;
         }
         
-        /* 網格佈局：讓六個按鈕排成漂亮的兩列或三列 */
+        /* 網格佈局 */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -95,7 +95,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
         
-        /* 滑鼠懸停互動特效（發光、浮起、字變金） */
+        /* 滑鼠懸停：卡片整體浮起發光 */
         .category-item:hover {
             transform: translateY(-3px);
             color: #ffb84d;
@@ -104,31 +104,51 @@
             box-shadow: 0 6px 15px rgba(217, 167, 82, 0.2);
         }
         
-        /* 骰子小圖標樣式 */
-        .menu-dice {
-            background: #8c1a1a;
-            color: #fff;
-            padding: 2px 6px;
-            font-size: 0.75em;
-            border-radius: 3px;
-            margin-right: 12px;
+        /* 🌟 重頭戲：全新 3D 立體工藝骰子效果 */
+        .dice-icon, .menu-dice {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* 運用暗紅到鮮紅的漸層模擬球體/晶體光澤 */
+            background: linear-gradient(135deg, #bd2c2c 0%, #8c1a1a 60%, #5c1010 100%);
+            color: #ffffff;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            font-size: 0.72em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            
+            /* 利用不對稱邊框製造出 3D 側邊的擠壓厚度 */
+            border-top: 1px solid #e64545;
+            border-left: 1px solid #bd2c2c;
+            border-right: 2px solid #5c1010;
+            border-bottom: 4px solid #4a0909; /* 底部暗面，形成立體感 */
+            
+            /* 外陰影與內高光 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+            
+            /* 預設微微懸浮 */
+            transform: translateY(-2px);
+            transition: all 0.15s ease;
+            vertical-align: middle;
+        }
+
+        .dice-icon {
+            margin-left: 10px;
+        }
+
+        .menu-dice {
+            margin-right: 12px;
             flex-shrink: 0;
         }
         
-        /* 頂部大 D20 標籤 */
-        .dice-icon {
-            display: inline-block;
-            background: #8c1a1a;
-            color: #fff;
-            padding: 2px 8px;
-            font-size: 0.75em;
-            border-radius: 3px;
-            margin-left: 10px;
-            vertical-align: middle;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        /* 💥 物理反饋：當滑鼠移到卡片上，骰子會被實體「按壓」下去 */
+        .category-item:hover .menu-dice {
+            transform: translateY(1px); /* 往下壓 */
+            border-bottom: 1px solid #4a0909; /* 底部厚度被壓扁 */
+            box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
         }
+        
         footer {
             margin-top: 60px;
             padding-top: 20px;

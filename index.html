@@ -104,33 +104,32 @@
             box-shadow: 0 6px 15px rgba(217, 167, 82, 0.2);
         }
         
-        /* 🌟 重頭戲：全新 3D 立體工藝骰子效果 */
+        /* 3D 立體工藝骰子效果（已改為正方形晶體比例） */
         .dice-icon, .menu-dice {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            /* 運用暗紅到鮮紅的漸層模擬球體/晶體光澤 */
             background: linear-gradient(135deg, #bd2c2c 0%, #8c1a1a 60%, #5c1010 100%);
             color: #ffffff;
             font-weight: bold;
-            font-size: 0.72em;
-            padding: 3px 8px;
+            font-size: 1.2em; /* 放大圖標字體讓點數清晰 */
+            width: 24px;      /* 固定寬度 */
+            height: 24px;     /* 固定高度，形成正方形骰子 */
             border-radius: 4px;
             
-            /* 利用不對稱邊框製造出 3D 側邊的擠壓厚度 */
+            /* 3D 側邊厚度擠壓 */
             border-top: 1px solid #e64545;
             border-left: 1px solid #bd2c2c;
             border-right: 2px solid #5c1010;
-            border-bottom: 4px solid #4a0909; /* 底部暗面，形成立體感 */
+            border-bottom: 4px solid #4a0909;
             
-            /* 外陰影與內高光 */
             box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
             text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
             
-            /* 預設微微懸浮 */
             transform: translateY(-2px);
             transition: all 0.15s ease;
             vertical-align: middle;
+            flex-shrink: 0;
         }
 
         .dice-icon {
@@ -139,13 +138,12 @@
 
         .menu-dice {
             margin-right: 12px;
-            flex-shrink: 0;
         }
         
-        /* 💥 物理反饋：當滑鼠移到卡片上，骰子會被實體「按壓」下去 */
+        /* 物理反饋：滑鼠移到卡片上，骰子會被實體壓實 */
         .category-item:hover .menu-dice {
-            transform: translateY(1px); /* 往下壓 */
-            border-bottom: 1px solid #4a0909; /* 底部厚度被壓扁 */
+            transform: translateY(1px);
+            border-bottom: 1px solid #4a0909;
             box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
         }
         
@@ -163,7 +161,7 @@
 
     <div class="container">
         <header>
-            <h1>TRPG名詞/專有名詞辭典<span class="dice-icon">D20</span></h1>
+            <h1>TRPG名詞/專有名詞辭典<span class="dice-icon">⚅</span></h1>
             <div class="subtitle">「骰面已定，命運的齒輪開始轉動。」—— 歡迎來到我們的 TRPG 跑團空間</div>
         </header>
 
@@ -171,7 +169,7 @@
             <section>
                 <h2>關於本站</h2>
                 <p>
-                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。
+                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你可以是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。
                     本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分，包括本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
                 </p>
             </section>
@@ -182,12 +180,12 @@
                     選擇一個知識領域切入，開啟你的遭遇戰：
                 </p>
                 <div class="category-grid">
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 所有名詞</a>
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 基礎介紹</a>
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 遊戲類型</a>
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 遊玩介紹</a>
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 數值</a>
-                    <a href="#" class="category-item"><span class="menu-dice">D20</span> 關於本站</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 所有名詞</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 基礎介紹</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 遊戲類型</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 遊玩介紹</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 數值</a>
+                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 關於本站</a>
                 </div>
             </section>
         </main>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRPG名詞/專有名詞辭典 | TRPG辭典</title>
+    <title>未知冒險譚 | TRPG 跑團日誌</title>
     <style>
         body {
             margin: 0;
@@ -27,6 +27,46 @@
             border-radius: 4px;
             position: relative;
         }
+        
+        /* 🗺️ 全新：頂部簡潔導覽列樣式 */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            border-bottom: 1px solid #4a3b2c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .nav-item {
+            text-decoration: none;
+            color: #bfa17a;
+            font-weight: bold;
+            font-size: 0.95em;
+            letter-spacing: 0.05em;
+            transition: color 0.25s ease;
+            position: relative;
+            padding: 4px 0;
+        }
+        /* 滑鼠懸停：文字變亮金 */
+        .nav-item:hover {
+            color: #d9a752;
+        }
+        /* 懸停時的金色底線魔法特效 */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #d9a752;
+            transition: width 0.25s ease;
+        }
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
         header {
             text-align: center;
             border-bottom: 2px dashed #8c6d48;
@@ -47,7 +87,7 @@
             font-style: italic;
         }
         
-        /* 🔍 全新：冒險者搜尋框風格設計 */
+        /* 🔍 搜尋區塊 */
         .search-area {
             max-width: 600px;
             margin: 0 auto 35px auto;
@@ -68,14 +108,12 @@
             border-radius: 4px 0 0 4px;
             transition: all 0.3s ease;
         }
-        /* 搜尋框點擊時的金色魔法發光特效 */
         .search-input:focus {
             outline: none;
             border-color: #d9a752;
             background-color: #261f19;
             box-shadow: inset 0 0 8px rgba(217, 167, 82, 0.2);
         }
-        /* 搜尋框佔位文字顏色 */
         .search-input::placeholder {
             color: #735d49;
             font-style: italic;
@@ -100,7 +138,6 @@
         }
         .search-btn:hover {
             background: linear-gradient(135deg, #d43f3f 0%, #a82222 60%, #731515 100%);
-            color: #fff;
         }
         .search-btn:active {
             transform: translateY(2px);
@@ -155,8 +192,6 @@
             transition: all 0.25s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
-        
-        /* 滑鼠懸停：卡片整體浮起發光 */
         .category-item:hover {
             transform: translateY(-3px);
             color: #ffb84d;
@@ -195,7 +230,6 @@
         .dice-icon {
             margin-left: 10px;
         }
-
         .menu-dice {
             margin-right: 12px;
         }
@@ -222,6 +256,15 @@
 <body>
 
     <div class="container">
+        <nav class="navbar">
+            <a href="#" class="nav-item">所有名詞</a>
+            <a href="#" class="nav-item">基礎介紹</a>
+            <a href="#" class="nav-item">遊戲類型</a>
+            <a href="#" class="nav-item">遊玩介紹</a>
+            <a href="#" class="nav-item">數值</a>
+            <a href="#" class="nav-item">關於本站</a>
+        </nav>
+
         <header>
             <h1>TRPG名詞/專有名詞辭典<span class="dice-icon">⚅</span></h1>
             <div class="subtitle">「骰面已定，命運的齒輪開始轉動。」—— 歡迎來到我們的 TRPG 跑團空間</div>
@@ -268,11 +311,9 @@
                 alert('請輸入想檢索的名詞關鍵字！');
                 return;
             }
-            // 這裡留給日後名詞資料串接時擴充，目前先提供流暢的介面反饋
             console.log('玩家正在檢索關鍵字：' + query);
         }
 
-        // 綁定 Enter 鍵，讓玩家按確定也能直接搜尋
         document.getElementById('keyword-search').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();

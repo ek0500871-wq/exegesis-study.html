@@ -1,85 +1,99 @@
 [
   {
     "name": "APP",
+    "en_name": "Appearance",
     "pronunciation": "/əˈpɪrəns/",
     "definition": "「外觀」或「魅力」的縮寫，英文全名為「Appearance」。此部分決定該角色在遊戲進行中，他人眼中的初印象（第一印象）與互動情況有極大影響。",
     "example": "「APP（外觀）在角色設計中，可以增加類似魅惑技能的存在，對於NPC能達到奇效。」"
   },
   {
     "name": "CON",
+    "en_name": "Constitution",
     "pronunciation": "/kɑn/",
     "definition": "「體質」的縮寫，英文名為「Constitution」。大多時候出現在克蘇魯或地下城相關的劇本，作為衡量一名角色對恐懼、負面效果的底層判斷依據，為角色耐力、健康和生命力統整。",
     "example": "「體質對克蘇魯系列來說，判定成敗上具有很大作用。」"
   },
   {
     "name": "DEX",
+    "en_name": "Dexterity",
     "pronunciation": "/ˈdek.s/",
     "definition": "「敏捷」的縮寫，完整英文為「Dexterity」。在冒險、逃脫類奇幻、神話、克蘇魯劇本中，它是角色的反應速度和靈活能力的表現，會影響劇本進行時的戰鬥表現和調查表現。",
     "example": "「在戰鬥類遊戲中，有人會特意點高DEX（敏捷）數值，提升閃避速度。」"
   },
   {
     "name": "EDU",
+    "en_name": "Education",
     "pronunciation": "/ˌɛdʒ.əˈkeɪ.ʃən/",
     "definition": "「教育」的縮寫，完整英文是「Education」。指角色在基礎角色卡建立時，身世背景中關於知識和技能點數獲得多寡的數值變化。",
     "example": "「角色設定角色卡時，角色背景的EDU（教育）能影響技能點數的獲得。」"
   },
   {
     "name": "INT",
+    "en_name": "Intelligence",
     "pronunciation": "[ɪnˈtɛlədʒəns]",
-    "definition": "「智力」的縮寫，其英文全名是「Intelligence」。此數值的作用在於角色記憶能力、思考能力的體現，在一定程度上會對「教育」這個數值有互相影響，也對在劇情發展中有學習知識運用的差別。",
+    "definition": "「智力」的縮寫，其英文全名是「Intelligence」。此數值的作用在於角色記憶能力、思考能力的體現，在一定程度上會對「教育」這個數值有互相影響，也對在劇情發展中有學習知識運用部分的差別。",
     "example": "「INT（智力）點的數值在角色進行遊戲中，調查階段上有比較高的便利性和成功率。」"
   },
   {
     "name": "POW",
-    "pronunciation": "/ ˈpaʊər /",
+    "en_name": "Power",
+    "pronunciation": "/ˈpaʊər/",
     "definition": "「意志」的縮寫，英文為「Power」。大多時間出現在克蘇魯類型的劇本類型中，代表角色接受的超自然能力抗性、靈魂和精神承受能力上對異形恐懼值的抵抗數值。",
     "example": "「POW（意志）是對抗精神污染的主要數值之一。」"
   },
   {
     "name": "ra.",
-    "pronunciation": "/ a:r eɪ /",
+    "en_name": "Roll Ability",
+    "pronunciation": "/a:r eɪ/",
     "definition": "為Roll Ability的縮寫，指投擲線上版TRPG時使用的指令，一般可用ra.、ra。、.ra等方式。",
     "example": "「系統，我要ra.角色的偵查行動判定。」"
   },
   {
     "name": "SIZ",
+    "en_name": "Size",
     "pronunciation": "/saɪz/",
     "definition": "「體型」的縮寫，英文全名是「Size」。為角色設定中，該名角色的身高、體重綜合數值，對於使用能力或生存能力的優劣有很大關聯。",
     "example": "「SIZ（體型）的綜合數值要多少，並不取決於角色設定時的身高、體重，所以能放心地進行設計。」"
   },
   {
     "name": "STR",
+    "en_name": "Strength",
     "pronunciation": "[strɛŋθ]",
     "definition": "「力量」的縮寫，英文全名為「Strength」。在角色設定中，對於該角色能否使用攻擊或防禦有其至關重要的作用，在探索、冒險或克蘇魯遊戲中是不可略過的數值設定。",
     "example": "「為什麼在角色卡裡，STR（力量）和其他數值都是以英文縮寫代表？」"
   },
   {
     "name": "理智值",
-    "pronunciation": "ㄌ一ˇㄓˋㄓˊ",
+    "en_name": "SAN / Sanity",
+    "pronunciation": "ㄌㄧˇ ㄓˋ ㄓˊ",
     "definition": "又稱SAN值（Sanity值），此為克蘇魯神話主題或驚悚類型中出現的基礎數值，當角色的SAN值降低的話，該人物需經過判定，獲得相應負面狀態等暫時狀態。",
     "example": "「經過判定，該角色理智下降五點。然而，因角色維持的理智值尚在平均正常範圍內，因此不額外判定該角色的精神狀態。」"
   },
   {
     "name": "幸運",
-    "pronunciation": "ㄒㄧㄥˋㄩˋ",
+    "en_name": "Luck",
+    "pronunciation": "ㄒㄧㄥˋ ㄩˋ",
     "definition": "經常以英文的Luck出現在遊戲過程和角色卡設定中，可以做為不知情況下的成敗判定之外，還能在克蘇魯系列當彌補失敗的數值補充。",
-    "example": "「幸運值點高，不一定代表成功機率大，有時所謂的「幸運」不會獲得期望中的結果。」"
+    "example": "「幸運值點高，不一定代表成功機率大，有時所謂的「幸運']」不會獲得期望中的結果。」"
   },
   {
     "name": "生命值",
-    "pronunciation": "ㄕㄥ ㄇㄧㄥˋㄓˊ",
+    "en_name": "HP / Hit Point / Health Point",
+    "pronunciation": "ㄕㄥ ㄇㄧㄥˋ ㄓˊ",
     "definition": "又稱為HP（Hit Point/Health Point）、血量、血條等。此為遊玩劇本中，代表角色承受傷害的上限。",
-    "example": "%「角色的生命值會因為受傷或理智降低而有所變化，損失超過三分之一會強制進入負面狀態。」"
+    "example": "「角色的生命值會因為受傷或理智降低而有所變化，損失超過三分之一會強制進入負面狀態。」"
   },
   {
     "name": "數值",
-    "pronunciation": "ㄕㄨˋㄓˊ",
-    "definition": "為玩家建立角色時需要創造的角色面板，依照各類型不同，包含的需求也會也所差異。",
+    "en_name": "",
+    "pronunciation": "ㄕㄨˋ ㄓˊ",
+    "definition": "為玩家建立角色時需要創造的角色面板，依照各類型不同，包含的需求也會有所差異。此為各項點數統稱，如生命值、體質、敏捷等。",
     "example": "「關於數值的設定，我們有生命值、體力、攻擊力、敏捷......等，請玩家仔細填寫，需確認加起來的數字是否符合初始數值點數。」"
   },
   {
     "name": "傷害加成",
-    "pronunciation": "ㄕㄤ ㄏㄞˋㄐㄧㄚ ㄔㄥˊ",
+    "en_name": "DB / Damage Bonus",
+    "pronunciation": "ㄕㄤ ㄏㄞˋ ㄐㄧㄚ ㄔㄥˊ",
     "definition": "英文為「Damage Bonus」，可簡稱為 「DB」。在冒險類型或克蘇魯類型的遊戲中，傷害加成既是戰鬥輔助中常用的被動或增益手段，讓角色提高生存的可能性。",
     "example": "「技能增益提高傷害加成，可以更快地結束戰鬥。」"
   }

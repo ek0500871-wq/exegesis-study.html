@@ -104,7 +104,7 @@
             box-shadow: 0 6px 15px rgba(217, 167, 82, 0.2);
         }
         
-        /* 3D 立體工藝骰子效果（已改為正方形晶體比例） */
+        /* 3D 立體工藝骰子效果 */
         .dice-icon, .menu-dice {
             display: inline-flex;
             align-items: center;
@@ -112,12 +112,12 @@
             background: linear-gradient(135deg, #bd2c2c 0%, #8c1a1a 60%, #5c1010 100%);
             color: #ffffff;
             font-weight: bold;
-            font-size: 1.2em; /* 放大圖標字體讓點數清晰 */
-            width: 24px;      /* 固定寬度 */
-            height: 24px;     /* 固定高度，形成正方形骰子 */
+            font-size: 1.2em;
+            width: 24px;
+            height: 24px;
             border-radius: 4px;
             
-            /* 3D 側邊厚度擠壓 */
+            /* 3D 側邊厚度 */
             border-top: 1px solid #e64545;
             border-left: 1px solid #bd2c2c;
             border-right: 2px solid #5c1010;
@@ -140,13 +140,14 @@
             margin-right: 12px;
         }
         
-        /* 物理反饋：滑鼠移到卡片上，骰子會被實體壓實 */
+        /* 物理反饋 */
         .category-item:hover .menu-dice {
             transform: translateY(1px);
             border-bottom: 1px solid #4a0909;
             box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
         }
         
+        /* 頁尾樣式優化：微調行高與文字間距使其更具足夠的閱讀舒適度 */
         footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -154,6 +155,8 @@
             font-size: 0.85em;
             color: #735d49;
             text-align: center;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
         }
     </style>
 </head>
@@ -169,8 +172,7 @@
             <section>
                 <h2>關於本站</h2>
                 <p>
-                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你可以是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。
-                    本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分，包括本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
+                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分。
                 </p>
             </section>
 
@@ -191,7 +193,7 @@
         </main>
 
         <footer>
-            &copy; 2026 未知冒險譚 TRPG Group. 願骰運與你同在。
+            本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
         </footer>
     </div>
 

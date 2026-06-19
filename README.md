@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>未知冒險譚 | TRPG 跑團日誌</title>
+    <title>TRPG名詞/專有名詞辭典 | TRPG辭典</title>
     <style>
         /* 奇幻地下城風格設定 */
         body {
@@ -151,23 +151,26 @@
 
     <div class="container">
         <header>
-            <h1>未知冒險譚<span class="dice-icon">D20</span></h1>
+            <h1>TRPG名詞/專有名詞辭典<span class="dice-icon">D20</span></h1>
             <div class="subtitle">「骰面已定，命運的齒輪開始轉動。」—— 歡迎來到我們的 TRPG 跑團空間</div>
         </header>
 
         <nav>
-            <a href="#">冒險大廳</a>
-            <a href="#">原創劇本</a>
-            <a href="#">角色酒館</a>
-            <a href="#">跑團日誌</a>
-            <a href="#">眾籌/關於</a>
+            <a href="#">所有名詞</a>
+            <a href="#">基礎介紹</a>
+            <a href="#">遊戲類型</a>
+            <a href="#">遊玩介紹</a>
+            <a href="#">數值</a>
+            <a href="#">關於</a>
         </nav>
 
         <main>
             <section>
                 <h2>關於本站</h2>
                 <p>
-                    這裡是一群熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是精通 DND（龍與地下城）的資深城主（DM）、熱愛 CoC（克蘇魯的呼喚）調查員、或是剛踏入帷幕的新手冒險者，都能在這裡找到屬於你的故事。
+                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。
+                    本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分，包括本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
+
                 </p>
             </section>
 

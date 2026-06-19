@@ -339,12 +339,13 @@
 
     <div class="container">
         <nav class="navbar">
-            <span class="nav-item" onclick="changeCategory('all', this)">所有名詞</span>
-            <span class="nav-item" onclick="changeCategory('basic', this)">基礎介紹</span>
-            <span class="nav-item" onclick="changeCategory('types', this)">遊戲類型</span>
-            <span class="nav-item" onclick="changeCategory('gameplay', this)">遊玩介紹</span>
-            <span class="nav-item" onclick="changeCategory('stats', this)">數值</span>
-            <span class="nav-item" onclick="changeCategory('about', this)">關於本站</span>
+            <span class="nav-item active" data-category="home" onclick="changeCategory('home', this)">🏠 首頁</span>
+            <span class="nav-item" data-category="all" onclick="changeCategory('all', this)">所有名詞</span>
+            <span class="nav-item" data-category="basic" onclick="changeCategory('basic', this)">基礎介紹</span>
+            <span class="nav-item" data-category="types" onclick="changeCategory('types', this)">遊戲類型</span>
+            <span class="nav-item" data-category="gameplay" onclick="changeCategory('gameplay', this)">遊玩介紹</span>
+            <span class="nav-item" data-category="stats" onclick="changeCategory('stats', this)">數值</span>
+            <span class="nav-item" data-category="about" onclick="changeCategory('about', this)">關於本站</span>
         </nav>
 
         <header>
@@ -359,25 +360,28 @@
             </div>
 
             <div id="dynamic-display-area" class="display-container">
-                <section id="default-about-section">
-                    <h2>關於本站</h2>
-                    <p>
+                <section class="category-box" style="margin-top: 0; margin-bottom: 30px; text-align: center;">
+                    <h2 style="border: none; padding: 0; margin-top: 0; text-align: center;">🎲 歡迎來到開拓者營地</h2>
+                    <p style="text-align: justify;">
                         這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分。
                     </p>
+                    <button class="search-btn" style="margin: 25px auto 10px auto; padding: 12px 35px; border-radius: 4px; font-size: 1.05em;" onclick="changeCategory('all')">
+                        🔮 開始探索所有名詞
+                    </button>
                 </section>
 
-                <section id="default-category-section" class="category-box">
+                <section class="category-box">
                     <h2>📚 辭典核心分類</h2>
                     <p style="font-size: 0.9em; color: #bfa17a; font-style: italic; margin-bottom: 15px;">
                         選擇一個知識領域切入，開啟你的遭遇戰：
                     </p>
                     <div class="category-grid">
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(1)').click()"><span class="menu-dice">⚅</span> 所有名詞</div>
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(2)').click()"><span class="menu-dice">⚅</span> 基礎介紹</div>
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(3)').click()"><span class="menu-dice">⚅</span> 遊戲類型</div>
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(4)').click()"><span class="menu-dice">⚅</span> 遊玩介紹</div>
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(5)').click()"><span class="menu-dice">⚅</span> 數值</div>
-                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(6)').click()"><span class="menu-dice">⚅</span> 關於本站</div>
+                        <div class="category-item" onclick="changeCategory('all')"><span class="menu-dice">⚅</span> 所有名詞</div>
+                        <div class="category-item" onclick="changeCategory('basic')"><span class="menu-dice">⚅</span> 基礎介紹</div>
+                        <div class="category-item" onclick="changeCategory('types')"><span class="menu-dice">⚅</span> 遊戲類型</div>
+                        <div class="category-item" onclick="changeCategory('gameplay')"><span class="menu-dice">⚅</span> 遊玩介紹</div>
+                        <div class="category-item" onclick="changeCategory('stats')"><span class="menu-dice">⚅</span> 數值</div>
+                        <div class="category-item" onclick="changeCategory('about')"><span class="menu-dice">⚅</span> 關於本站</div>
                     </div>
                 </section>
             </div>
@@ -419,19 +423,27 @@
 
         // 🔄 分類切換大腦調度中心
         function changeCategory(category, element) {
-            // 清除導覽列所有高亮樣式
+            // 清除導覽列所有高亮樣式，並精準賦予當前分類高亮
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if(element) element.classList.add('active');
+            
+            const targetNav = element || document.querySelector(`.nav-item[data-category="${category}"]`);
+            if(targetNav) targetNav.classList.add('active');
 
             const displayArea = document.getElementById('dynamic-display-area');
             
-            // 如果是關於本站，渲染結構化的編輯聲明
+            // 【分流一】點擊首頁
+            if (category === 'home') {
+                renderHomePage(displayArea);
+                return;
+            }
+
+            // 【分流二】點擊關於本站
             if (category === 'about') {
                 renderAboutPage(displayArea);
                 return;
             }
 
-            // 取得對應分類名詞陣列
+            // 【分流三】名詞分類處理
             let termsToDisplay = [];
             let titleText = "";
 
@@ -452,6 +464,36 @@
             }
 
             renderTermCards(displayArea, titleText, termsToDisplay);
+        }
+
+        // 🏠 渲染專屬精美首頁模組
+        function renderHomePage(container) {
+            container.innerHTML = `
+                <section class="category-box" style="margin-top: 0; margin-bottom: 30px; text-align: center;">
+                    <h2 style="border: none; padding: 0; margin-top: 0; text-align: center;">🎲 歡迎來到開拓者營地</h2>
+                    <p style="text-align: justify;">
+                        這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分。
+                    </p>
+                    <button class="search-btn" style="margin: 25px auto 10px auto; padding: 12px 35px; border-radius: 4px; font-size: 1.05em;" onclick="changeCategory('all')">
+                        🔮 開始探索所有名詞
+                    </button>
+                </section>
+
+                <section class="category-box">
+                    <h2>📚 辭典核心分類</h2>
+                    <p style="font-size: 0.9em; color: #bfa17a; font-style: italic; margin-bottom: 15px;">
+                        選擇一個知識領域切入，開啟你的遭遇戰：
+                    </p>
+                    <div class="category-grid">
+                        <div class="category-item" onclick="changeCategory('all')"><span class="menu-dice">⚅</span> 所有名詞</div>
+                        <div class="category-item" onclick="changeCategory('basic')"><span class="menu-dice">⚅</span> 基礎介紹</div>
+                        <div class="category-item" onclick="changeCategory('types')"><span class="menu-dice">⚅</span> 遊戲類型</div>
+                        <div class="category-item" onclick="changeCategory('gameplay')"><span class="menu-dice">⚅</span> 遊玩介紹</div>
+                        <div class="category-item" onclick="changeCategory('stats')"><span class="menu-dice">⚅</span> 數值</div>
+                        <div class="category-item" onclick="changeCategory('about')"><span class="menu-dice">⚅</span> 關於本站</div>
+                    </div>
+                </section>
+            `;
         }
 
         // 📝 渲染名詞卡片模組

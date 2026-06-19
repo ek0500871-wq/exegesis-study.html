@@ -28,7 +28,7 @@
             position: relative;
         }
         
-        /* 🗺️ 全新：頂部簡潔導覽列樣式 */
+        /* 🗺️ 頂部簡潔導覽列樣式 */
         .navbar {
             display: flex;
             justify-content: center;
@@ -47,9 +47,10 @@
             transition: color 0.25s ease;
             position: relative;
             padding: 4px 0;
+            cursor: pointer;
         }
         /* 滑鼠懸停：文字變亮金 */
-        .nav-item:hover {
+        .nav-item:hover, .nav-item.active {
             color: #d9a752;
         }
         /* 懸停時的金色底線魔法特效 */
@@ -63,7 +64,7 @@
             background-color: #d9a752;
             transition: width 0.25s ease;
         }
-        .nav-item:hover::after {
+        .nav-item:hover::after, .nav-item.active::after {
             width: 100%;
         }
 
@@ -154,9 +155,22 @@
             font-size: 1.6em;
             margin-top: 30px;
         }
+        h3 {
+            color: #bfa17a;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
         p {
             text-align: justify;
             color: #d5c8af;
+        }
+        ul {
+            padding-left: 20px;
+            color: #d5c8af;
+        }
+        li {
+            margin-bottom: 8px;
         }
         
         /* 核心分類大方框 */
@@ -191,6 +205,7 @@
             font-size: 1.1em;
             transition: all 0.25s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
         .category-item:hover {
             transform: translateY(-3px);
@@ -240,6 +255,73 @@
             border-bottom: 1px solid #4a0909;
             box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
         }
+
+        /* 📜 詞條動態卡片美化樣式 */
+        .display-container {
+            margin-top: 30px;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .term-card {
+            background-color: #211a15;
+            border: 1px solid #6e5334;
+            border-left: 4px solid #d9a752;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+        .term-card:hover {
+            transform: translateX(4px);
+            background-color: #261f19;
+        }
+        .term-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 1px dashed #4a3b2c;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .term-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #ffb84d;
+            margin: 0;
+        }
+        .term-pronunciation {
+            font-size: 0.9em;
+            color: #bfa17a;
+            font-style: italic;
+            font-family: "Lucida Sans", sans-serif;
+        }
+        .term-definition {
+            color: #d5c8af;
+            text-align: justify;
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        .term-example {
+            color: #8c765c;
+            font-size: 0.95em;
+            font-style: italic;
+            border-left: 2px solid #6e5334;
+            padding-left: 12px;
+            margin-top: 10px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #735d49;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
         footer {
             margin-top: 60px;
@@ -257,12 +339,12 @@
 
     <div class="container">
         <nav class="navbar">
-            <a href="#" class="nav-item">所有名詞</a>
-            <a href="#" class="nav-item">基礎介紹</a>
-            <a href="#" class="nav-item">遊戲類型</a>
-            <a href="#" class="nav-item">遊玩介紹</a>
-            <a href="#" class="nav-item">數值</a>
-            <a href="#" class="nav-item">關於本站</a>
+            <span class="nav-item" onclick="changeCategory('all', this)">所有名詞</span>
+            <span class="nav-item" onclick="changeCategory('basic', this)">基礎介紹</span>
+            <span class="nav-item" onclick="changeCategory('types', this)">遊戲類型</span>
+            <span class="nav-item" onclick="changeCategory('gameplay', this)">遊玩介紹</span>
+            <span class="nav-item" onclick="changeCategory('stats', this)">數值</span>
+            <span class="nav-item" onclick="changeCategory('about', this)">關於本站</span>
         </nav>
 
         <header>
@@ -276,27 +358,29 @@
                 <button class="search-btn" onclick="performSearch()">投擲檢索</button>
             </div>
 
-            <section>
-                <h2>關於本站</h2>
-                <p>
-                    這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分。
-                </p>
-            </section>
+            <div id="dynamic-display-area" class="display-container">
+                <section id="default-about-section">
+                    <h2>關於本站</h2>
+                    <p>
+                        這裡是一名熱愛桌上角色扮演遊戲（TRPG）的開拓者營地。無論你是老玩家或新玩家，都能在這裡找到關於各類名詞和縮寫名詞的解釋。本網站及各項名詞皆由單人製作，亦包括日後增減、修改之部分。
+                    </p>
+                </section>
 
-            <section class="category-box">
-                <h2>📚 辭典核心分類</h2>
-                <p style="font-size: 0.9em; color: #bfa17a; font-style: italic; margin-bottom: 15px;">
-                    選擇一個知識領域切入，開啟你的遭遇戰：
-                </p>
-                <div class="category-grid">
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 所有名詞</a>
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 基礎介紹</a>
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 遊戲類型</a>
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 遊玩介紹</a>
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 數值</a>
-                    <a href="#" class="category-item"><span class="menu-dice">⚅</span> 關於本站</a>
-                </div>
-            </section>
+                <section id="default-category-section" class="category-box">
+                    <h2>📚 辭典核心分類</h2>
+                    <p style="font-size: 0.9em; color: #bfa17a; font-style: italic; margin-bottom: 15px;">
+                        選擇一個知識領域切入，開啟你的遭遇戰：
+                    </p>
+                    <div class="category-grid">
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(1)').click()"><span class="menu-dice">⚅</span> 所有名詞</div>
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(2)').click()"><span class="menu-dice">⚅</span> 基礎介紹</div>
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(3)').click()"><span class="menu-dice">⚅</span> 遊戲類型</div>
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(4)').click()"><span class="menu-dice">⚅</span> 遊玩介紹</div>
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(5)').click()"><span class="menu-dice">⚅</span> 數值</div>
+                        <div class="category-item" onclick="document.querySelector('.navbar span:nth-child(6)').click()"><span class="menu-dice">⚅</span> 關於本站</div>
+                    </div>
+                </section>
+            </div>
         </main>
 
         <footer>
@@ -305,15 +389,207 @@
     </div>
 
     <script>
+        // 🔮 宣告調查員知識庫全域緩存物件
+        let trpgDatabase = {
+            basic: [],
+            types: [],
+            gameplay: [],
+            stats: [],
+            about: null
+        };
+
+        // 🚀 當網頁載入完畢，立刻下達 Fetch 術式自後端捕獲數據
+        document.addEventListener('DOMContentLoaded', () => {
+            const fetchTasks = [
+                fetch('data/basic.json').then(res => res.json()).then(data => trpgDatabase.basic = data),
+                fetch('data/types.json').then(res => res.json()).then(data => trpgDatabase.types = data),
+                fetch('data/gameplay.json').then(res => res.json()).then(data => trpgDatabase.gameplay = data),
+                fetch('data/stats.json').then(res => res.json()).then(data => trpgDatabase.stats = data),
+                fetch('data/about.json').then(res => res.json()).then(data => trpgDatabase.about = data)
+            ];
+
+            Promise.all(fetchTasks)
+                .then(() => {
+                    console.log('🔮 成功同步 GitHub 核心資料庫，全自動跑團術語集已就緒。');
+                })
+                .catch(err => {
+                    console.error('⚠️ 無法連線到調查員資料庫，請確認 JSON 資料是否存在或格式正確：', err);
+                });
+        });
+
+        // 🔄 分類切換大腦調度中心
+        function changeCategory(category, element) {
+            // 清除導覽列所有高亮樣式
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            if(element) element.classList.add('active');
+
+            const displayArea = document.getElementById('dynamic-display-area');
+            
+            // 如果是關於本站，渲染結構化的編輯聲明
+            if (category === 'about') {
+                renderAboutPage(displayArea);
+                return;
+            }
+
+            // 取得對應分類名詞陣列
+            let termsToDisplay = [];
+            let titleText = "";
+
+            if (category === 'all') {
+                titleText = "所有名詞庫";
+                termsToDisplay = [
+                    ...trpgDatabase.basic,
+                    ...trpgDatabase.types,
+                    ...trpgDatabase.gameplay,
+                    ...trpgDatabase.stats
+                ];
+                // 實施讀取音排序法規則 (字母 A-Z / 注音符號 / 數字在最後)
+                termsToDisplay = sortDictionaryTerms(termsToDisplay);
+            } else {
+                const titleMap = { basic: "基礎介紹", types: "遊戲類型", gameplay: "遊玩介紹", stats: "數值" };
+                titleText = titleMap[category];
+                termsToDisplay = trpgDatabase[category];
+            }
+
+            renderTermCards(displayArea, titleText, termsToDisplay);
+        }
+
+        // 📝 渲染名詞卡片模組
+        function renderTermCards(container, title, terms) {
+            if (!terms || terms.length === 0) {
+                container.innerHTML = `<h2>📚 ${title}</h2><div class="no-results">※ 資料庫尚無此分類項目或初始化中，請稍後重試。</div>`;
+                return;
+            }
+
+            let htmlContent = `<h2>📚 ${title} (${terms.length})</h2>`;
+            terms.forEach(term => {
+                htmlContent += `
+                    <div class="term-card">
+                        <div class="term-header">
+                            <span class="term-name">${term.name}</span>
+                            <span class="term-pronunciation">${term.pronunciation}</span>
+                        </div>
+                        <div class="term-definition">${term.definition}</div>
+                        ${term.example ? `<div class="term-example">${term.example}</div>` : ''}
+                    </div>
+                `;
+            });
+            container.innerHTML = htmlContent;
+        }
+
+        // ℹ️ 結構化渲染關於本站模組
+        function renderAboutPage(container) {
+            const about = trpgDatabase.about;
+            if (!about) {
+                container.innerHTML = `<h2>關於本站</h2><div class="no-results">※ 關於本站資料正在加載中...</div>`;
+                return;
+            }
+
+            const overview = about.editing_overview;
+            const disclaimers = about.disclaimers;
+
+            let htmlContent = `
+                <h2>📋 ${overview.title}</h2>
+                <h3>一、 辭典編輯目標</h3>
+                ${overview.objectives.map(p => `<p>${p}</p>`).join('')}
+                
+                <h3>二、 編輯規則</h3>
+                <p>${overview.rules}</p>
+                
+                <h3>三、 排序原則</h3>
+                <p>${overview.sorting_principles.main}</p>
+                <ul>
+                    ${overview.sorting_principles.details.map(li => `<li>${li}</li>`).join('')}
+                </ul>
+
+                <h2 style="margin-top: 40px;">⚠️ ${disclaimers.title}</h2>
+                <h3>一、 技術與文責聲明</h3>
+                <p>${disclaimers.technical_statement}</p>
+                
+                <h3>二、 用途限制</h3>
+                <p>${disclaimers.usage_restriction}</p>
+                
+                <h3>三、 來源 / 參考資料</h3>
+                <p>${disclaimers.references}</p>
+            `;
+            container.innerHTML = htmlContent;
+        }
+
+        // 🔍 投擲檢索大考驗 (關鍵字過濾)
         function performSearch() {
-            const query = document.getElementById('keyword-search').value.trim();
+            const query = document.getElementById('keyword-search').value.trim().toLowerCase();
             if (query === '') {
                 alert('請輸入想檢索的名詞關鍵字！');
                 return;
             }
-            console.log('玩家正在檢索關鍵字：' + query);
+
+            // 取消導覽列高亮
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+            // 匯總所有詞條進行無死角搜索
+            let allTerms = [
+                ...trpgDatabase.basic,
+                ...trpgDatabase.types,
+                ...trpgDatabase.gameplay,
+                ...trpgDatabase.stats
+            ];
+
+            let matchedTerms = allTerms.filter(term => {
+                return term.name.toLowerCase().includes(query) || 
+                       term.definition.toLowerCase().includes(query) ||
+                       (term.example && term.example.toLowerCase().includes(query));
+            });
+
+            // 對搜尋出來的結果依據排序法重新排版
+            matchedTerms = sortDictionaryTerms(matchedTerms);
+
+            const displayArea = document.getElementById('dynamic-display-area');
+            renderSearchCards(displayArea, query, matchedTerms);
         }
 
+        // 🔍 渲染搜尋特化結果區塊
+        function renderSearchCards(container, query, terms) {
+            let htmlContent = `<h2>🔍 檢索結果：內容包含「${query}」</h2>`;
+            if (terms.length === 0) {
+                htmlContent += `<div class="no-results">🎲 檢索失敗！未在大庫內尋獲相關紀錄。換個關鍵字再投擲一次意志判定吧！</div>`;
+            } else {
+                htmlContent += `<p style="font-size: 0.9em; color: #bfa17a; font-style: italic;">成功目擊到 ${terms.length} 個相關筆記：</p>`;
+                terms.forEach(term => {
+                    htmlContent += `
+                        <div class="term-card">
+                            <div class="term-header">
+                                <span class="term-name">${term.name}</span>
+                                <span class="term-pronunciation">${term.pronunciation}</span>
+                            </div>
+                            <div class="term-definition">${term.definition}</div>
+                            ${term.example ? `<div class="term-example">${term.example}</div>` : ''}
+                        </div>
+                    `;
+                });
+            }
+            container.innerHTML = htmlContent;
+        }
+
+        // ⚖️ 核心演算法：落實「讀取音排序法」規則
+        function sortDictionaryTerms(termsArray) {
+            return termsArray.sort((a, b) => {
+                const nameA = a.name;
+                const nameB = b.name;
+
+                // 檢查是否以數字開頭 (例如 1D100) 的規則：若出現數字，歸類在該類型的最後面
+                const isNumA = /^\d/.test(nameA);
+                const isNumB = /^\d/.test(nameB);
+                
+                if (isNumA && !isNumB) return 1;   // a 是數字，排後面
+                if (!isNumA && isNumB) return -1;  // b 是數字，a 排前面
+                if (isNumA && isNumB) return nameA.localeCompare(nameB); // 皆為數字則依數字大小字串排序
+
+                // 使用瀏覽器內建 zh-Hant 語系排序法：會自動將 A-Z 縮寫排在最前，中文詞條隨後
+                return nameA.localeCompare(nameB, 'zh-Hant');
+            });
+        }
+
+        // 綁定鍵盤 Enter 鍵發動搜尋觸發器
         document.getElementById('keyword-search').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 performSearch();

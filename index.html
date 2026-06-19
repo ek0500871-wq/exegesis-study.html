@@ -46,6 +46,67 @@
             margin-top: 10px;
             font-style: italic;
         }
+        
+        /* 🔍 全新：冒險者搜尋框風格設計 */
+        .search-area {
+            max-width: 600px;
+            margin: 0 auto 35px auto;
+            display: flex;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .search-input {
+            flex: 1;
+            background-color: #211a15;
+            border: 2px solid #6e5334;
+            border-right: none;
+            padding: 12px 18px;
+            color: #e2d6be;
+            font-size: 1em;
+            font-family: inherit;
+            border-radius: 4px 0 0 4px;
+            transition: all 0.3s ease;
+        }
+        /* 搜尋框點擊時的金色魔法發光特效 */
+        .search-input:focus {
+            outline: none;
+            border-color: #d9a752;
+            background-color: #261f19;
+            box-shadow: inset 0 0 8px rgba(217, 167, 82, 0.2);
+        }
+        /* 搜尋框佔位文字顏色 */
+        .search-input::placeholder {
+            color: #735d49;
+            font-style: italic;
+        }
+        .search-btn {
+            background: linear-gradient(135deg, #bd2c2c 0%, #8c1a1a 60%, #5c1010 100%);
+            color: #ffffff;
+            border: none;
+            border-top: 1px solid #e64545;
+            border-right: 1px solid #5c1010;
+            border-bottom: 4px solid #4a0909;
+            padding: 0 25px;
+            font-size: 0.95em;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: all 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-btn:hover {
+            background: linear-gradient(135deg, #d43f3f 0%, #a82222 60%, #731515 100%);
+            color: #fff;
+        }
+        .search-btn:active {
+            transform: translateY(2px);
+            border-bottom: 1px solid #4a0909;
+        }
+
         section {
             margin-bottom: 40px;
         }
@@ -117,7 +178,6 @@
             height: 24px;
             border-radius: 4px;
             
-            /* 3D 側邊厚度 */
             border-top: 1px solid #e64545;
             border-left: 1px solid #bd2c2c;
             border-right: 2px solid #5c1010;
@@ -147,7 +207,6 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
         }
         
-        /* 頁尾樣式優化：微調行高與文字間距使其更具足夠的閱讀舒適度 */
         footer {
             margin-top: 60px;
             padding-top: 20px;
@@ -169,6 +228,11 @@
         </header>
 
         <main>
+            <div class="search-area">
+                <input type="text" id="keyword-search" class="search-input" placeholder="輸入關鍵字檢索調查員筆記...">
+                <button class="search-btn" onclick="performSearch()">投擲檢索</button>
+            </div>
+
             <section>
                 <h2>關於本站</h2>
                 <p>
@@ -196,6 +260,25 @@
             本網站之架設、內容不作為任何商業利益之用途，是基於生成式AI（Gemini）之協助架設，程式碼不予公布。
         </footer>
     </div>
+
+    <script>
+        function performSearch() {
+            const query = document.getElementById('keyword-search').value.trim();
+            if (query === '') {
+                alert('請輸入想檢索的名詞關鍵字！');
+                return;
+            }
+            // 這裡留給日後名詞資料串接時擴充，目前先提供流暢的介面反饋
+            console.log('玩家正在檢索關鍵字：' + query);
+        }
+
+        // 綁定 Enter 鍵，讓玩家按確定也能直接搜尋
+        document.getElementById('keyword-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
 
 </body>
 </html>
